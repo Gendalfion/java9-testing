@@ -8,7 +8,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="org.aamvrosov.java9.fabrics" />
-    <orderEntry type="module" module-name="org.aamvrosov.java9.common" />
   </component>
 </module>
