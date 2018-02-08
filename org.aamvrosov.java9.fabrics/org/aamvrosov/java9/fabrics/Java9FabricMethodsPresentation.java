@@ -14,4 +14,9 @@ public class Java9FabricMethodsPresentation implements Java9ExampleProvider {
         System.out.println("  Set.of - " + Set.of(1, 1L, 4d));
         System.out.println("  Map.of - " + Map.of("first-key", 1L, "second-key", -1));
     }
+
+    @Override
+    public int order() {
+        return 0;
+    }
 }

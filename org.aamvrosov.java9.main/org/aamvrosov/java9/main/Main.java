@@ -14,10 +14,12 @@ public class Main {
         System.out.println("*** Java 9 features testing pet-project ***");
 
         // dynamic load of specified type providers
-        ServiceLoader.load(Java9ExampleProvider.class).stream().forEach(serviceLoader -> {
-            final Java9ExampleProvider provider = serviceLoader.get();
+        ServiceLoader.load(Java9ExampleProvider.class).stream()
+                .map(ServiceLoader.Provider::get)
+                .sorted()
+                .forEach(provider -> {
             System.out.println();
-            System.out.println("--- Java9ExampleProvider: " + provider.getClass().getName());
+            System.out.println("--- Java9ExampleProvider " + provider.order() + ": " + provider.getClass().getName());
             provider.runExample();
         });
     }
