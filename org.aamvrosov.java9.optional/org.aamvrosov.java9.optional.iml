@@ -8,10 +8,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="org.aamvrosov.java9.fabrics" />
     <orderEntry type="module" module-name="org.aamvrosov.java9.common" />
-    <orderEntry type="module" module-name="org.aamvrosov.java9.process-api-improvements" />
-    <orderEntry type="module" module-name="org.aamvrosov.java9.diamond-operator-improvement" />
-    <orderEntry type="module" module-name="org.aamvrosov.java9.optional" />
   </component>
 </module>
