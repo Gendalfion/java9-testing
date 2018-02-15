@@ -13,5 +13,6 @@
     <orderEntry type="module" module-name="org.aamvrosov.java9.process-api-improvements" />
     <orderEntry type="module" module-name="org.aamvrosov.java9.diamond-operator-improvement" />
     <orderEntry type="module" module-name="org.aamvrosov.java9.optional" />
+    <orderEntry type="module" module-name="org.aamvrosov.java9.stream-api-improvements" />
   </component>
 </module>
