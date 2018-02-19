@@ -33,9 +33,17 @@ public class Java9Http2ApiPresentation implements Java9ExampleProvider {
             final CompletableFuture<HttpResponse<String>> httpResponseCompletableFuture =
                     httpClient.sendAsync(httpRequest, HttpResponse.BodyHandler.asString());
 
+            long totalSleepTime = 0;
             while (!httpResponseCompletableFuture.isDone()) {
                 out.println("Waiting while request is completed...");
                 Thread.sleep(400);
+                totalSleepTime += 400;
+
+                if (totalSleepTime > 5000) {
+                    System.out.println("Google server is responding too long, closing connection...");
+                    httpResponseCompletableFuture.cancel(true);
+                    break;
+                }
             }
 
             out.println("httpResponse.statusCode() = " + httpResponseCompletableFuture.get().statusCode());

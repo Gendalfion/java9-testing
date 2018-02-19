@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="java9-testing" default="all">
+    <property file="java9-testing.properties"/>
+    <property name="target.dir" value="./target"/>
+    <property name="build.dir" value="${target.dir}/build"/>
+    <property name="dist.dir" value="${target.dir}/dist"/>
+
+    <target name="clean" description="clean up">
+        <delete dir="${target.dir}"/>
+    </target>
+
+    <target name="compile"
+            description="compilation">
+        <mkdir dir="${build.dir}"/>
+
+        <!-- Compiling all *.java sources with javac from JDK9 -->
+        <apply executable="${jdk.home.9.0}/bin/javac"
+               parallel="true"
+               output="${build.dir}/build.log">
+            <arg value="-d"/>
+            <arg value="${build.dir}"/>
+            <arg value="--module-source-path"/>
+            <arg value="."/>
+            <fileset dir="." includes="**/*.java"/>
+        </apply>
+    </target>
+
+    <target name="all" depends="clean, compile"/>
+</project>
