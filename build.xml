@@ -9,10 +9,8 @@
         <delete dir="${target.dir}"/>
     </target>
 
-    <target name="compile"
-            description="compilation">
+    <target name="compile" description="compilation">
         <mkdir dir="${build.dir}"/>
-
         <!-- Compiling all *.java sources with javac from JDK9 -->
         <apply executable="${jdk.home.9.0}/bin/javac"
                parallel="true"
@@ -26,4 +24,14 @@
     </target>
 
     <target name="all" depends="clean, compile"/>
+
+    <target name="run_compiled" description="Run program with module path">
+        <!-- Executing program from compiled classes with java command from JDK 9 -->
+        <exec executable="${jdk.home.9.0}/bin/java">
+            <arg value="--module-path"/>
+            <arg value="${build.dir}"/>
+            <arg value="-m"/>
+            <arg value="org.aamvrosov.java9.main/org.aamvrosov.java9.main.Main"/>
+        </exec>
+    </target>
 </project>
