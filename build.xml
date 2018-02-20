@@ -23,13 +23,64 @@
         </apply>
     </target>
 
-    <target name="all" depends="clean, compile"/>
+    <target name="make_jmods"
+            description="Build JMOD-archives for some modules"
+            depends="compile">
+        <mkdir dir="${dist.dir}/jmods"/>
+        <!-- Build .jmod for module org.aamvrosov.java9.common -->
+        <exec executable="${jdk.home.9.0}/bin/jmod">
+            <arg value="create"/>
+            <arg value="--class-path"/>
+            <arg value="${build.dir}/org.aamvrosov.java9.common/"/>
+            <arg value="${dist.dir}/jmods/common.jmod"/>
+        </exec>
+
+        <!-- Build .jmod for module org.aamvrosov.java9.main -->
+        <exec executable="${jdk.home.9.0}/bin/jmod">
+            <arg value="create"/>
+            <arg value="--class-path"/>
+            <arg value="${build.dir}/org.aamvrosov.java9.main/"/>
+            <arg value="${dist.dir}/jmods/main.jmod"/>
+        </exec>
+
+        <!-- Build .jmod for module org.aamvrosov.java9.fabrics -->
+        <exec executable="${jdk.home.9.0}/bin/jmod">
+            <arg value="create"/>
+            <arg value="--class-path"/>
+            <arg value="${build.dir}/org.aamvrosov.java9.fabrics/"/>
+            <arg value="${dist.dir}/jmods/fabrics.jmod"/>
+        </exec>
+    </target>
+
+    <target name="build_with_jlink"
+            description="Build runtime image from packed modules and compiled classes"
+            depends="make_jmods">
+        <exec executable="${jdk.home.9.0}/bin/jlink">
+            <arg value="--module-path"/>
+            <arg value="${jdk.home.9.0}/jmods:${dist.dir}/jmods:${build.dir}"/>
+            <arg value="--add-modules"/>
+            <!-- Note that we can add modules from .jmod files and compiled classes spread in file system -->
+            <arg value="org.aamvrosov.java9.main,org.aamvrosov.java9.fabrics,org.aamvrosov.java9.stream.api.improvements"/>
+            <arg value="--output"/>
+            <arg value="${dist.dir}/runtime_image"/>
+        </exec>
+    </target>
+
+    <target name="all" depends="clean, build_with_jlink"/>
 
     <target name="run_compiled" description="Run program with module path">
         <!-- Executing program from compiled classes with java command from JDK 9 -->
         <exec executable="${jdk.home.9.0}/bin/java">
             <arg value="--module-path"/>
             <arg value="${build.dir}"/>
+            <arg value="-m"/>
+            <arg value="org.aamvrosov.java9.main/org.aamvrosov.java9.main.Main"/>
+        </exec>
+    </target>
+
+    <target name="run_jlinked" description="Run linked runtime image">
+        <!-- Executing program from linked image -->
+        <exec executable="${dist.dir}/runtime_image/bin/java">
             <arg value="-m"/>
             <arg value="org.aamvrosov.java9.main/org.aamvrosov.java9.main.Main"/>
         </exec>

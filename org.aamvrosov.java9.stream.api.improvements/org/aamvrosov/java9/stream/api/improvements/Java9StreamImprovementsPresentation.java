@@ -11,12 +11,12 @@ public class Java9StreamImprovementsPresentation implements Java9ExampleProvider
         System.out.println("Java 9 now has Stream.iterate(), Stream.dropWhile(), Stream.takeWhile():");
         System.out.println("Stream.iterate(1, i -> i < 50, i -> i + 3)\n" +
                 "                .dropWhile(i -> i < 10)\n" +
-                "                .takeWhile(i -> i < 30)\n" +
+                "                .takeWhile(i -> i < 40)\n" +
                 "                .map(String::valueOf)\n" +
                 "                .collect(Collectors.joining(\" \")):\n" +
                 Stream.iterate(1, i -> i < 50, i -> i + 3)
                         .dropWhile(i -> i < 10)
-                        .takeWhile(i -> i < 30)
+                        .takeWhile(i -> i < 40)
                         .map(String::valueOf)
                         .collect(Collectors.joining(" ")));
 
