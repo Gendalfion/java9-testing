@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.aamvrosov</groupId>
+    <artifactId>java9-examples</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.target>1.9</maven.compiler.target>
+        <maven.compiler.source>1.9</maven.compiler.source>
+        <parent.base.dir>${basedir}</parent.base.dir>
+    </properties>
+
+    <modules>
+        <module>org.aamvrosov.java9.common</module>
+        <module>org.aamvrosov.java9.main</module>
+        <module>org.aamvrosov.java9.http2.api</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <!-- Read properties from file -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>${parent.base.dir}/java9-testing.properties</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- We using Java 9 compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <fork>true</fork>
+                    <executable>${jdk.home.9.0}/bin/javac</executable>
+                    <buildDirectory>${project.build.directory}/maven_build</buildDirectory>
+                    <source>9</source>
+                    <target>9</target>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Explicitly define maven repositories for artifacts resolving on custom configured circumstances -->
+    <repositories>
+        <repository>
+            <id>central_origin</id>
+            <url>https://repo1.maven.org/maven2</url>
+            <releases>
+                <updatePolicy>daily</updatePolicy>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central_origin</id>
+            <url>https://repo1.maven.org/maven2</url>
+            <releases>
+                <updatePolicy>daily</updatePolicy>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>

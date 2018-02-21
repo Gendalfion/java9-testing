@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>org.aamvrosov</groupId>
+        <artifactId>java9-examples</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>http2-api</artifactId>
+
+    <properties>
+        <!-- Hack to prevent path redefinition while properties inheritance -->
+        <parent.base.dir>${basedir}/..</parent.base.dir>
+    </properties>
+
+    <build>
+        <sourceDirectory>.</sourceDirectory>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.aamvrosov</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
+</project>
