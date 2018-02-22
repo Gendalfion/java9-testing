@@ -4,7 +4,7 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.aamvrosov</groupId>
+    <groupId>org.aamvrosov.java9</groupId>
     <artifactId>java9-examples</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
@@ -20,6 +20,8 @@
         <module>org.aamvrosov.java9.common</module>
         <module>org.aamvrosov.java9.main</module>
         <module>org.aamvrosov.java9.http2.api</module>
+        <module>org.aamvrosov.java9.maven.distr</module>
+        <module>org.aamvrosov.java9.optional</module>
     </modules>
 
     <build>
