@@ -1,0 +1,30 @@
+subprojects {
+    apply plugin: 'java'
+
+    // Tell gradle to use Maven central repository
+    repositories {
+        mavenCentral()
+    }
+
+    sourceSets {
+        // Mark the directory for sources in all subprojects
+        main {
+            java {
+                srcDirs = ['./']
+            }
+        }
+    }
+
+    afterEvaluate {
+        // compiler arguments to use with Java 9 compiler
+        compileJava {
+            inputs.property("moduleName", moduleName)
+            doFirst {
+                options.compilerArgs = [
+                        '--module-path', classpath.asPath,
+                ]
+                classpath = files()
+            }
+        }
+    }
+}

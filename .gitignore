@@ -23,6 +23,12 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+*.lst
+java9-testing.iml
+java9-testing.ipr
+java9-testing.iws
+
 .idea/
 /output/
-/target/
+*/target/
+*/target_maven/

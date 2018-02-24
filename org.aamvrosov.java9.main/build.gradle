@@ -1,0 +1,6 @@
+// we define module name external property (used in parent script)
+ext.moduleName = 'org.aamvrosov.java9.main'
+
+dependencies {
+    implementation project(':org.aamvrosov.java9.common')
+}
