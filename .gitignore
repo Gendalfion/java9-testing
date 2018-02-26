@@ -30,6 +30,7 @@ java9-testing.iws
 
 .idea/
 /output/
+/dist/
 */target/
 */target_maven/
 org.aamvrosov.java9.maven.distr/maven.distr.iml

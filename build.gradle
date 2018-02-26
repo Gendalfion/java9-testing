@@ -28,3 +28,36 @@ subprojects {
         }
     }
 }
+
+apply plugin: 'java'
+
+dependencies {
+    compile project(':org.aamvrosov.java9.common')
+    compile project(':org.aamvrosov.java9.main')
+    compile project(':org.aamvrosov.java9.fabrics')
+    compile project(':org.aamvrosov.java9.process.api.improvements')
+}
+
+clean.doLast {
+    new File('./dist').deleteDir()
+}
+
+// Copy all dependencies to dist directory
+task copyAll(type: Copy) {
+    from configurations.runtime
+    into "${project.projectDir}/dist"
+}
+task copyAllWrapper(type: GradleBuild) {
+    tasks = ['copyAll']
+}
+
+build.doLast {
+    copyAllWrapper.execute()
+
+    // Creating startup script for jar-based modular Java 9 application
+    File file = new File("${project.projectDir}/dist/run.sh")
+    file.text = "#!/bin/bash\n\n" +
+            "*** Startup script, created with groovy ***\n\n" +
+            System.getProperty("java.home") + "/bin/java -p . -m org.aamvrosov.java9.main/org.aamvrosov.java9.main.Main"
+    ant.chmod(file: file.getPath(), perm: "ugo+rx")
+}

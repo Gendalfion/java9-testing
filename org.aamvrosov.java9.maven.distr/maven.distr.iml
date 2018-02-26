@@ -8,8 +8,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="org.aamvrosov.java9.common_main" />
-    <orderEntry type="module" module-name="org.aamvrosov.java9.main_main" />
+    <orderEntry type="module" module-name="org.aamvrosov.java9.common" />
+    <orderEntry type="module" module-name="org.aamvrosov.java9.main" />
     <orderEntry type="module" module-name="http2-api" />
     <orderEntry type="module" module-name="optional" />
   </component>
