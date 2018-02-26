@@ -55,9 +55,17 @@
     <target name="build_with_jlink"
             description="Build runtime image from packed modules and compiled classes"
             depends="make_jmods">
+        <condition property="os.specific.module.separator" value=";">
+            <os family="windows"/>
+        </condition>
+
+        <condition property="os.specific.module.separator" value=":">
+            <os family="unix"/>
+        </condition>
+
         <exec executable="${jdk.home.9.0}/bin/jlink">
             <arg value="--module-path"/>
-            <arg value="${jdk.home.9.0}/jmods:${dist.dir}/jmods:${build.dir}"/>
+            <arg value="${jdk.home.9.0}/jmods${os.specific.module.separator}${dist.dir}/jmods${os.specific.module.separator}${build.dir}"/>
             <arg value="--add-modules"/>
             <!-- Note that we can add modules from .jmod files and compiled classes spread in file system -->
             <arg value="org.aamvrosov.java9.main,org.aamvrosov.java9.fabrics,org.aamvrosov.java9.stream.api.improvements"/>

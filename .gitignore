@@ -32,3 +32,6 @@ java9-testing.iws
 /output/
 */target/
 */target_maven/
+org.aamvrosov.java9.maven.distr/maven.distr.iml
+org.aamvrosov.java9.optional/optional.iml
+org.aamvrosov.java9.http2.api/http2-api.iml

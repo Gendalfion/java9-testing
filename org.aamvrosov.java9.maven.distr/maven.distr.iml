@@ -4,15 +4,13 @@
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
-      <excludeFolder url="file://$MODULE_DIR$/target_maven" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="org.aamvrosov.java9.common" />
-    <orderEntry type="module" module-name="org.aamvrosov.java9.main" />
-    <orderEntry type="module" module-name="org.aamvrosov.java9.http2-api" />
-    <orderEntry type="module" module-name="org.aamvrosov.java9.optional" />
+    <orderEntry type="module" module-name="org.aamvrosov.java9.common_main" />
+    <orderEntry type="module" module-name="org.aamvrosov.java9.main_main" />
+    <orderEntry type="module" module-name="http2-api" />
+    <orderEntry type="module" module-name="optional" />
   </component>
 </module>

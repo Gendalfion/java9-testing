@@ -84,6 +84,10 @@
                                     ${line.separator}${jdk.home.9.0}/bin/java -p . -m org.aamvrosov.java9.main/org.aamvrosov.java9.main.Main
                                 </echo>
 
+                                <echo file="${output.dir}/run.bat" append="false">rem Starting Java 9 module application on Windows
+                                    ${line.separator}${jdk.home.9.0}\bin\java.exe -p . -m org.aamvrosov.java9.main/org.aamvrosov.java9.main.Main
+                                </echo>
+
                                 <chmod file="${output.dir}/run.sh" perm="ugo+rx"/>
                             </tasks>
                         </configuration>

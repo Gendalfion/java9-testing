@@ -20,8 +20,8 @@
         <module>org.aamvrosov.java9.common</module>
         <module>org.aamvrosov.java9.main</module>
         <module>org.aamvrosov.java9.http2.api</module>
-        <module>org.aamvrosov.java9.maven.distr</module>
         <module>org.aamvrosov.java9.optional</module>
+        <module>org.aamvrosov.java9.maven.distr</module>
     </modules>
 
     <build>
