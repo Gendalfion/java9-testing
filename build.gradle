@@ -55,9 +55,38 @@ build.doLast {
     copyAllWrapper.execute()
 
     // Creating startup script for jar-based modular Java 9 application
-    File file = new File("${project.projectDir}/dist/run.sh")
-    file.text = "#!/bin/bash\n\n" +
+    File startupScriptForUnix = new File("${project.projectDir}/dist/run.sh")
+    startupScriptForUnix.text = "#!/bin/bash\n\n" +
             "*** Startup script, created with groovy ***\n\n" +
             System.getProperty("java.home") + "/bin/java -p . -m org.aamvrosov.java9.main/org.aamvrosov.java9.main.Main"
-    ant.chmod(file: file.getPath(), perm: "ugo+rx")
+    ant.chmod(file: startupScriptForUnix.getPath(), perm: "ugo+rx")
+
+    File startupScriptForWindows = new File("${project.projectDir}/dist/run.bat")
+    startupScriptForWindows.text = "rem *** Startup script, created with groovy ***\n\n" +
+            System.getProperty("java.home") + "\\bin\\java.exe -p . -m org.aamvrosov.java9.main/org.aamvrosov.java9.main.Main"
+}
+
+task runOnWindows(type: Exec) {
+    workingDir 'dist'
+    commandLine 'cmd.exe', '/c', '"run.bat"'
+}
+
+task runOnLinux(type: Exec) {
+    workingDir 'dist'
+    commandLine './run.sh'
+}
+
+import org.apache.tools.ant.taskdefs.condition.Os
+task run {
+    doLast {
+        // Running built application in dependence of current OS
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            println "*** WINDOWS run --- "
+            runOnWindows.execute()
+        }
+        if (Os.isFamily(Os.FAMILY_UNIX)) {
+            println "*** LINUX run --- "
+            runOnLinux.execute()
+        }
+    }
 }
